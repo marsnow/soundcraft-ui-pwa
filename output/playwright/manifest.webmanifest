@@ -1,0 +1,15 @@
+{
+  "id": "./embed-check.html",
+  "name": "Mixer Tabs",
+  "short_name": "Mixer",
+  "lang": "zh-TW",
+  "start_url": "./embed-check.html",
+  "scope": "./",
+  "display": "fullscreen",
+  "background_color": "#111315",
+  "theme_color": "#17191c",
+  "icons": [
+    { "src": "./icons/soundcraft-ui-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./icons/soundcraft-ui-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

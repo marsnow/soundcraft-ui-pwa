@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#17191c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>Mixer Tabs</title>
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="icon" href="./icons/soundcraft-ui-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="./icons/soundcraft-ui-192.png">
+  <link rel="stylesheet" href="./app.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main id="panels" aria-label="控制頁面"></main>
+  <div id="floating-controls" data-edge="right">
+    <button id="floating-toggle" type="button" aria-label="開啟分頁選單" aria-expanded="false" aria-controls="floating-panel" aria-describedby="floating-help" title="分頁選單；拖曳可移動位置">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="13" height="13" rx="2"/><path d="M16 4H6a2 2 0 0 0-2 2v10M11 11h5m-5 4h5"/></svg>
+    </button>
+    <span id="floating-help" class="visually-hidden">點選以切換分頁；拖曳按鈕可吸附左右邊緣，方向鍵也可調整位置。</span>
+    <section id="floating-panel" aria-label="分頁選單" hidden>
+      <h2>切換畫面</h2>
+      <div id="tabs" role="tablist" aria-label="混音機控制畫面" aria-orientation="vertical"></div>
+      <div class="panel-actions">
+        <button id="fullscreen" class="panel-action" type="button" aria-label="進入全螢幕" title="進入全螢幕">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>全螢幕</span>
+        </button>
+        <button id="settings" class="panel-action" type="button" aria-label="分頁設定" title="分頁設定">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 17h16M8 4v6m8 4v6"/></svg><span>設定</span>
+        </button>
+      </div>
+    </section>
+  </div>
+  <p id="notice" role="status" hidden></p>
+
+  <dialog id="settings-dialog" aria-labelledby="settings-title">
+    <form id="settings-form" novalidate>
+      <div class="dialog-heading">
+        <h1 id="settings-title">分頁設定</h1>
+        <p>自訂控制畫面的名稱與網址，設定只儲存在這台裝置。</p>
+      </div>
+      <div class="dialog-content">
+        <div id="tab-entries"></div>
+        <button id="add-tab" class="add-button" type="button">＋ 新增分頁</button>
+        <p class="help">區網網址可直接填入 IP，例如 192.168.1.10；使用時請連上混音機所在的 Wi-Fi。</p>
+        <p id="install-help" class="help">安裝至主畫面後，預設以全螢幕模式開啟。一般瀏覽器可從浮動選單進入全螢幕。</p>
+        <p id="form-error" role="alert" hidden></p>
+      </div>
+      <footer>
+        <button id="cancel-settings" class="secondary-button" type="button">取消</button>
+        <button class="primary-button" type="submit">儲存設定</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <template id="entry-template">
+    <fieldset class="tab-entry">
+      <legend></legend>
+      <label>分頁名稱<input name="tab-name" type="text" maxlength="40" autocomplete="off" required></label>
+      <label class="url-field">控制頁面網址<input name="tab-url" type="text" inputmode="url" maxlength="2048" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="http://192.168.1.10" required></label>
+      <button class="remove-tab icon-button" type="button" aria-label="移除此分頁" title="移除此分頁">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </fieldset>
+  </template>
+</body>
+</html>

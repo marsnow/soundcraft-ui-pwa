@@ -1,0 +1,5 @@
+.DS_Store
+/dist/
+/output/playwright/*.png
+/output/playwright/*-evidence.json
+/output/playwright/test-results*/
